@@ -1,17 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import ReactGA from 'react-ga';
+import { isChrome, isSafari, CustomView } from 'react-device-detect';
+
 import './App.css';
 
 const TRACKING_ID = "G-S1KYZJ151R"; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 
 const getURL = year => `https://nolaborables.com.ar/api/v2/feriados/${year}`
-  
-const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
-  
+
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
 const days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
-  
+
 const dayOfWeek = (day, month, year) => days[new Date(year, month, day).getDay()]
 
 class App extends React.Component {
@@ -30,79 +32,92 @@ class App extends React.Component {
       month: now.getMonth() + 1
     };
 
-    let holiday = holidays.find(h => 
+    let holiday = holidays.find(h =>
       (h.mes === today.month && h.dia > today.day) || h.mes > today.month
     );
 
-    if (!holiday){
+    if (!holiday) {
       holiday = holidays[0];
     }
-    
+
     this.setState({
       loading: false,
       holiday
     })
-  }
-  
-  componentDidMount () {
-    axios.get(getURL(this.state.year)).then(({data}) => this.setNext(data))
 
-    this.timeoutId = setTimeout(function () {
-        var card_body = document.querySelector(".card_body");
-        card_body.classList.add("active");
+    this.timeoutId = setTimeout(function() {
+      var card_body = document.querySelector(".card_body");
+      card_body.classList.add("active");
     }, 500);
-  } 
 
-  componentWillUnmount () {
+
+
+  }
+
+  componentDidMount() {
+    axios.get(getURL(this.state.year)).then(({ data }) => this.setNext(data))
+
+    
+  }
+
+  componentWillUnmount() {
     if (this.timeoutId) {
-        clearTimeout(this.timeoutId);
+      clearTimeout(this.timeoutId);
     }
   }
 
-  render () {
-    const {loading, holiday, year} = this.state
+  render() {
+    const { loading, holiday, year } = this.state
     return (
       <div className="wrapper-bk">
-        
+
         <div className="gradient-blur uno">
-            <svg width="100vw" height="100vh" viewBox="0 0 100 250" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#545775" d="M33.3,-43.4C44.7,-30.2,56.6,-21.1,59.7,-9.6C62.9,2,57.4,16,51.3,32.5C45.2,49,38.4,68,25.3,75.2C12.3,82.3,-7.2,77.6,-20.2,67.6C-33.3,57.6,-40,42.3,-50.9,27.4C-61.9,12.6,-77,-1.8,-79,-18C-80.9,-34.1,-69.7,-51.9,-54.4,-64.4C-39,-76.9,-19.5,-84.1,-4.3,-79C11,-73.9,21.9,-56.6,33.3,-43.4Z" transform="translate(100 100)" />
-                <def>
-                  <filter id="svgfilter" colorInterpolationFilters="sRGB">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur"/>
-                      <feBlend in="SourceGraphic" in2="svgfilter" />
-                  </filter>
-                </def>
-            </svg>
+          <svg width="100vw" height="100vh" viewBox="0 0 100 250" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#545775" d="M33.3,-43.4C44.7,-30.2,56.6,-21.1,59.7,-9.6C62.9,2,57.4,16,51.3,32.5C45.2,49,38.4,68,25.3,75.2C12.3,82.3,-7.2,77.6,-20.2,67.6C-33.3,57.6,-40,42.3,-50.9,27.4C-61.9,12.6,-77,-1.8,-79,-18C-80.9,-34.1,-69.7,-51.9,-54.4,-64.4C-39,-76.9,-19.5,-84.1,-4.3,-79C11,-73.9,21.9,-56.6,33.3,-43.4Z" transform="translate(100 100)" />
+            <def>
+
+              <CustomView condition={isSafari}>
+                <filter id="svgfilter" colorInterpolationFilters="sRGB">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur" />
+                </filter>
+              </CustomView>
+
+              <CustomView condition={isChrome}>
+                <filter id="svgfilter" colorInterpolationFilters="sRGB">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="80" result="blur" />
+                </filter>
+              </CustomView>
+            </def>
+          </svg>
         </div>
         <div className="gradient-blur dos">
-            <svg width="100vw" height="100vh" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#6BAA75" d="M14.9,-18.4C23.8,-14,38.6,-15.7,48.8,-9.8C59,-3.9,64.7,9.4,57.9,15.3C51.1,21.1,31.9,19.3,20.2,24.2C8.5,29.2,4.2,40.9,-2.6,44.4C-9.3,47.9,-18.7,43.3,-33.2,39.2C-47.7,35.1,-67.3,31.7,-63.5,25C-59.8,18.2,-32.6,8.2,-18.7,2.7C-4.9,-2.9,-4.3,-4,-3.4,-10.9C-2.5,-17.9,-1.2,-30.6,0.9,-31.8C3,-33,6,-22.7,14.9,-18.4Z" transform="translate(100 100)" />
+          <svg width="100vw" height="100vh" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#6BAA75" d="M14.9,-18.4C23.8,-14,38.6,-15.7,48.8,-9.8C59,-3.9,64.7,9.4,57.9,15.3C51.1,21.1,31.9,19.3,20.2,24.2C8.5,29.2,4.2,40.9,-2.6,44.4C-9.3,47.9,-18.7,43.3,-33.2,39.2C-47.7,35.1,-67.3,31.7,-63.5,25C-59.8,18.2,-32.6,8.2,-18.7,2.7C-4.9,-2.9,-4.3,-4,-3.4,-10.9C-2.5,-17.9,-1.2,-30.6,0.9,-31.8C3,-33,6,-22.7,14.9,-18.4Z" transform="translate(100 100)" />
 
-            </svg>
+          </svg>
         </div>
         <div className="card_wrap">
-        {loading ? <h1 className="loading">Encontrando ...</h1> :
+          {loading ? <h1 className="loading">Encontrando ...</h1> :
             <div className="card_body">
               <div className="card_body-gradient"></div>
               <div className="description">
-                  <h4>EN</h4>
-                  <h1>13</h1>
-                  <h2>DIAS</h2>
+                <h4>EN</h4>
+                <h1>13</h1>
+                <h2>DIAS</h2>
               </div>
               <div className="footer">
-                  <h3><b>{dayOfWeek(
-              holiday.dia, holiday.mes-1, year)}</b> {holiday.dia} DE {months[holiday.mes-1]}</h3>
-                  <h4><b>{this.state.holiday.motivo}</b></h4>
+                <h3><b>{dayOfWeek(
+                  holiday.dia, holiday.mes - 1, year)}</b> {holiday.dia} DE {months[holiday.mes - 1]}</h3>
+                <h4><b>{this.state.holiday.motivo}</b></h4>
               </div>
             </div>
-            }
+          }
         </div>
         <div className="made-by">
-            Made by <a href="http://pluscollective.io/">Plus Collective</a> 
+          Made by <a href="http://pluscollective.io/">Plus Collective</a>
         </div>
 
-        
+
       </div>
     )
   }
