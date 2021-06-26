@@ -27,7 +27,7 @@ class App extends React.Component {
     };
 
     let holiday = holidays.find(h => 
-      h.mes === today.month && h.dia > today.day || h.mes > today.month
+      (h.mes === today.month && h.dia > today.day) || h.mes > today.month
     );
 
     if (!holiday){
