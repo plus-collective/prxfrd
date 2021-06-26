@@ -1,7 +1,6 @@
 body {
     background-color: #ffffff;
-    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */  
+    background-image: url("https://proximoferiado.ar/beige-paper.png");
 }
 
 .wrapper-bk{
@@ -9,8 +8,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    
+    min-height: -webkit-fill-available;
+    width: 100%;
 }
 .gradient-blur {
     height: 100vh;
