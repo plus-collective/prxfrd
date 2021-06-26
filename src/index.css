@@ -1,0 +1,125 @@
+body {
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */  
+}
+
+.wrapper-bk{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.gradient-blur {
+    height: 100vh;
+    width: 100vw;
+    mix-blend-mode: multiply;
+    position: relative;
+}
+
+.uno {    
+    filter: url(#svgfilter);
+    position: absolute;
+    opacity: 0.9;
+}
+
+.dos {
+    filter: url(#svgfilter);
+    position: absolute;
+    opacity: 0.9;
+}
+
+
+.card_wrap {
+    position: relative;
+    display: flex;
+}
+
+.card_body {
+    position: relative;
+    margin: auto;
+    height: 0;
+    width: 360px;
+    box-shadow: -25px 25px 60px 5px rgba(0, 0, 0, 0.1), -60px 60px 100px 13px rgba(0, 0, 0, 0.27);
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+.card_body .description,
+.card_body .footer {
+    position: absolute;
+    left: 35px;
+    color: transparent;
+    transition: all 0.5s ease-in-out 0.5s;
+}
+.card_body .description {
+    top: 380px;
+}
+.card_body .footer {
+    bottom: 135px;
+    padding-right: 10%;
+}
+.card_body h3,
+.card_body h2,
+.card_body h1 {
+    text-transform: uppercase;
+}
+.card_body h4 {
+    font-weight: 300;
+    margin: 1em 0;
+}
+.card_body h2 {
+    font-weight: 400;
+    font-size: 36px;
+    margin: 0;
+}
+.card_body h3 {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0;
+}
+.card_body h1 {
+    font-weight: 600;
+    font-size: 220px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: -20%;
+    margin-bottom: -15%;
+}
+.card_body b {
+    font-weight: 600;
+    margin-right: 5px;
+}
+.card_body-gradient {
+    position: absolute;
+    top: -290px;
+    height: 800px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(201, 230, 255, 0.19) 100px, #FF858D 500px);
+    transition: top 0.3s ease-in-out 0.3s;
+}
+.card_body.active {
+    height: 510px;
+}
+.card_body.active .card_body-gradient {
+    top: 0;
+}
+.card_body.active .description {
+    top: 80px;
+    color: #fff;
+}
+
+.card_body.active .footer {
+    bottom: 35px;
+    color: #fff;
+}
+
+.made-by {
+    position: fixed;
+    bottom: 35px;
+    color: grey;
+}
+.made-by a {
+    text-decoration: none;
+    color:#F78154;
+}
