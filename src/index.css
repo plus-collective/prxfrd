@@ -129,3 +129,23 @@ body {
     text-decoration: line-through;
     color:#545775;
 }
+
+@media only screen and (max-width: 600px) {
+  
+  .card_body {
+    width: 280px;
+  }
+  .card_body.active {
+    height: 380px;
+  }
+  .card_body h1 {
+    font-size: 120px;
+  }
+  .card_body h2 {
+      font-size: 28px;
+  }
+  .card_body h3 {
+      font-size: 18px;
+  }
+
+}
