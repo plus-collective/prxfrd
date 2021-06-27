@@ -5,7 +5,7 @@ import { isChrome, isSafari, CustomView } from 'react-device-detect';
 
 import './App.css';
 
-const TRACKING_ID = "G-S1KYZJ151R"; // YOUR_OWN_TRACKING_ID
+const TRACKING_ID = "UA-134171689-4"; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 
 const getURL = year => `https://nolaborables.com.ar/api/v2/feriados/${year}`
