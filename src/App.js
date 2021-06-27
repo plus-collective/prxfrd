@@ -78,13 +78,13 @@ class App extends React.Component {
 
               <CustomView condition={isSafari}>
                 <filter id="svgfilter" colorInterpolationFilters="sRGB">
-                  <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur" />
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur" />
                 </filter>
               </CustomView>
 
               <CustomView condition={isChrome}>
                 <filter id="svgfilter" colorInterpolationFilters="sRGB">
-                  <feGaussianBlur in="SourceGraphic" stdDeviation="80" result="blur" />
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur" />
                 </filter>
               </CustomView>
             </def>

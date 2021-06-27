@@ -45,6 +45,7 @@ body {
     box-shadow: -25px 25px 60px 5px rgba(0, 0, 0, 0.1), -60px 60px 100px 13px rgba(0, 0, 0, 0.27);
     overflow: hidden;
     transition: height 0.3s ease-in-out;
+    transform: translate3d(0,0,0);
 }
 .card_body .description,
 .card_body .footer {
@@ -52,6 +53,7 @@ body {
     left: 35px;
     color: transparent;
     transition: all 0.5s ease-in-out 0.5s;
+    transform: translate3d(0,0,0);
 }
 .card_body .description {
     top: 380px;
@@ -95,8 +97,9 @@ body {
     top: -290px;
     height: 800px;
     width: 100%;
-    background: linear-gradient(to bottom, rgba(201, 230, 255, 0.19) 100px, #FF858D 500px);
+    background: linear-gradient(250deg,rgb(201 230 255 / 22%) 100px,#ff858d 500px);
     transition: top 0.3s ease-in-out 0.3s;
+    transform: translate3d(0,0,0);
 }
 .card_body.active {
     height: 510px;
@@ -121,5 +124,5 @@ body {
 }
 .made-by a {
     text-decoration: none;
-    color:#F78154;
+    color:white;
 }
