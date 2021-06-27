@@ -40,24 +40,34 @@ class App extends React.Component {
       holiday = holidays[0];
     }
 
+    let daysLeft = this.setLeftDays(holiday)
+
     this.setState({
       loading: false,
-      holiday
+      holiday,
+      daysLeft 
     })
 
     this.timeoutId = setTimeout(function() {
       var card_body = document.querySelector(".card_body");
       card_body.classList.add("active");
     }, 500);
+  }
 
+  setLeftDays(holiday){ 
+    let today = new Date()
+    let hToDate = new Date(this.state.year, holiday.mes -1 , holiday.dia)
 
+    var one_day=1000*60*60*24
+
+    return Math.ceil((hToDate.getTime()-today.getTime())/(one_day))
 
   }
 
   componentDidMount() {
     axios.get(getURL(this.state.year)).then(({ data }) => this.setNext(data))
 
-    
+
   }
 
   componentWillUnmount() {
@@ -67,7 +77,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading, holiday, year } = this.state
+    const { loading, holiday, year, daysLeft } = this.state
     return (
       <div className="wrapper-bk">
 
@@ -102,13 +112,13 @@ class App extends React.Component {
               <div className="card_body-gradient"></div>
               <div className="description">
                 <h4>EN</h4>
-                <h1>13</h1>
+                <h1>{daysLeft}</h1>
                 <h2>DIAS</h2>
               </div>
               <div className="footer">
                 <h3><b>{dayOfWeek(
                   holiday.dia, holiday.mes - 1, year)}</b> {holiday.dia} DE {months[holiday.mes - 1]}</h3>
-                <h4><b>{this.state.holiday.motivo}</b></h4>
+                <h4><b>{holiday.motivo}</b></h4>
               </div>
             </div>
           }
