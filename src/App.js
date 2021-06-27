@@ -7,11 +7,11 @@ import './App.css';
 
 const TRACKING_ID = "UA-134171689-4"; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 
 const getURL = year => `https://nolaborables.com.ar/api/v2/feriados/${year}`
-
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-
 const days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
 
 const dayOfWeek = (day, month, year) => days[new Date(year, month, day).getDay()]
