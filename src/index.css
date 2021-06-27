@@ -121,8 +121,11 @@ body {
     position: fixed;
     bottom: 35px;
     color: grey;
+    width: 100%;
+    text-align: right;
+    right: 20px;
 }
 .made-by a {
-    text-decoration: none;
-    color:white;
+    text-decoration: line-through;
+    color:#545775;
 }

@@ -114,7 +114,7 @@ class App extends React.Component {
           }
         </div>
         <div className="made-by">
-          Made by <a href="http://pluscollective.io/">Plus Collective</a>
+          Made by <a href="http://pluscollective.io/">Plus Collective</a>. Thanks to <a href="github.com/pjnovas">pjnovas</a>.
         </div>
 
 
